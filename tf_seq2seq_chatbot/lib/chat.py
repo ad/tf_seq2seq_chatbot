@@ -8,7 +8,7 @@ from tf_seq2seq_chatbot.lib.seq2seq_model_utils import create_model, _get_predic
 
 
 def chat():
-  with tf.Session() as sess:
+  with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as sess:
     # Create model and load parameters.
     model = create_model(sess, forward_only=True)
     model.batch_size = 1  # We decode one sentence at a time.
