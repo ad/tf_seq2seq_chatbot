@@ -15,7 +15,7 @@ def predict():
     results_filename = '_'.join(['results', str(FLAGS.num_layers), str(FLAGS.size), str(FLAGS.vocab_size)])
     results_path = os.path.join(FLAGS.results_dir, results_filename)
 
-    with tf.Session() as sess, open(results_path, 'w') as results_fh:
+    with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as sess, open(results_path, 'w') as results_fh:
         # Create model and load parameters.
         model = create_model(sess, forward_only=True)
         model.batch_size = 1  # We decode one sentence at a time.
